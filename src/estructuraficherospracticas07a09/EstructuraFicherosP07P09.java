@@ -273,10 +273,18 @@ public class EstructuraFicherosP07P09 extends javax.swing.JFrame {
                 try {
                     f = new File(path + ficheros[i]);
                     Path path1 = Paths.get(path + ficheros[i]);
-                    
 
+                    if (f.exists()) {
+                        if (!f.getCanonicalFile().toPath().toRealPath(NOFOLLOW_LINKS).toString().equals(f.toString())) {
+                            if ((path + ficheros[i]).contains(".")) {
+                                errores = errores + "Falta el fichero " + ficheros[i] + "\n";
+                            } else {
+                                errores = errores + "Falta la carpeta " + ficheros[i] + "\n";
+                            }
+                        }
+
+                    }
                     if (!f.exists()) {
-                        f.getCanonicalFile().toPath().toRealPath(NOFOLLOW_LINKS).toString();
                         if ((path + ficheros[i]).contains(".")) {
                             errores = errores + "Falta el fichero " + ficheros[i] + "\n";
                         } else {
